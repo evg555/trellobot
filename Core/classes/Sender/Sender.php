@@ -4,10 +4,9 @@ namespace Core\Sender;
 
 class Sender
 {
-    private $id;
-
-    public function __construct()
+    public function sendRequest($url, $data, $method)
     {
-        $this->id = 1;
+        $request = new Request($url, $data, $method);
+        return json_decode($request->get(), true);
     }
 }
