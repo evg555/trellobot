@@ -14,16 +14,25 @@ class Board
         $this->lists = $lists;
     }
 
-    public function getLists($boardID)
+    public function getLists()
     {
        return $this->lists;
+    }
+
+    public function getListByID($id)
+    {
+        $list = array_filter($this->lists, function ($item) use ($id){
+            return $item['id'] == $id;
+        });
+
+        return current($list);
     }
 
     public static function getListsFromTrello($boardID)
     {
         $result = false;
 
-        $url = 'boards/' . $boardID .'/lists?cards=open&card_fields=all&filter=open&fields=id,name';
+        $url = 'boards/' . $boardID .'/lists?cards=none&card_fields=all&filter=open&fields=id,name';
 
         $sender = new Sender();
         $result = $sender->sendRequest($url, '', 'get');

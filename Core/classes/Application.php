@@ -8,14 +8,11 @@ use Core\Entity\Board;
 
 class Application
 {
-    private $lists;
+    private $board;
 
     public function run()
     {
-        $lists = Board::buildLists();
-
-
-        var_dump($lists);
+        $board = Board::buildLists();
         exit;
         //TODO: получить все задачи в виде массива
         //TODO: создать карточки на неделю по задачам и времени
